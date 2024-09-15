@@ -1,0 +1,23 @@
+{
+  "name": "twittlite",
+  "app": {
+    "mode": "development",
+    "base_url": "localhost",
+    "port": ":8080"
+  },
+  "migration": {
+    "db": {
+      "postgres": {
+        "db_host": "localhost",
+        "db_port": 5432,
+        "db_name": "twittlite_db",
+        "db_user": "postgres",
+        "db_password": "081200",
+        "db_engine": "postgres"
+      }
+    }
+  },
+  "jwt": {
+    "secret_key": "sanbercode_golang_course"
+  }
+}
