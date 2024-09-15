@@ -14,6 +14,14 @@
         "db_user": "postgres",
         "db_password": "081200",
         "db_engine": "postgres"
+      },
+      "railway": {
+        "PGHOST": "postgres.railway.internal",
+        "PGPASSWORD": "SySFBOaRcWwlzNTXJFNMZWaZOHhXEpYN",
+        "PGPORT": 5432,
+        "PGUSER": "postgres",
+        "PGDATA": "/var/lib/postgresql/data/pgdata",
+        "PGDATABASE": "railway"
       }
     }
   },
