@@ -16,6 +16,12 @@ type UserProfileCheck struct {
 	Location sql.NullString `json:"location"`
 }
 
+type UserUpdateProfile struct {
+	Id       int    `json:"id"`
+	Bio      string `json:"bio"`
+	Location string `json:"location"`
+}
+
 type LoginResponse struct {
 	Username string `json:"username"`
 	Email    string `json:"email"`

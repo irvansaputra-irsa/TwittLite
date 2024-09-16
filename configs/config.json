@@ -22,6 +22,9 @@
         "PGUSER": "postgres",
         "PGDATA": "/var/lib/postgresql/data/pgdata",
         "PGDATABASE": "railway"
+      },
+      "supabase": {
+        "db_url": "user=postgres.thljlshhpzjkbxggaxus password=Irvan123_Saputra host=aws-0-ap-southeast-1.pooler.supabase.com port=6543 dbname=postgres"
       }
     }
   },

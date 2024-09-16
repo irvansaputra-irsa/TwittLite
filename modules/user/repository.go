@@ -10,6 +10,7 @@ type Repository interface {
 	RegisterRepository(u User) (err error)
 	LoginRepository(u LoginRequest) (result User, err error)
 	GetDetailUserRepository(uId int) (result UserProfileCheck, err error)
+	UpdateProfileRepository(u UserUpdateProfile) (err error)
 }
 
 type userRepository struct {
@@ -61,4 +62,19 @@ func (r *userRepository) GetDetailUserRepository(uId int) (result UserProfileChe
 		return result, err
 	}
 	return result, nil
+}
+
+func (r *userRepository) UpdateProfileRepository(u UserUpdateProfile) (err error) {
+	sqlStmt := "UPDATE " + constant.UserTableName.String() + " SET bio = $1, location = $2 WHERE id = $3"
+	params := []interface{}{
+		u.Bio,
+		u.Location,
+		u.Id,
+	}
+	_, err = r.db.Exec(sqlStmt, params...)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }

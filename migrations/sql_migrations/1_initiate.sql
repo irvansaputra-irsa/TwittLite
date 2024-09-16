@@ -15,7 +15,7 @@ CREATE TABLE
     follows (
         id SERIAL PRIMARY KEY,
         follower_id INTEGER NOT NULL REFERENCES users (id),
-        following_id INTEGER NOT NULL REFERENCES users (id),
+        followed_id INTEGER NOT NULL REFERENCES users (id),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         created_by VARCHAR(356) DEFAULT 'SYSTEM',
         modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

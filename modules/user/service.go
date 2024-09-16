@@ -13,6 +13,7 @@ type Service interface {
 	RegisterService(ctx *gin.Context) (err error)
 	LoginService(ctx *gin.Context) (result *LoginResponse, err error)
 	GetDetailUserService(ctx *gin.Context) (result UserProfileCheck, err error)
+	UpdateProfileService(ctx *gin.Context) (err error)
 }
 
 type userService struct {
@@ -82,4 +83,21 @@ func (s *userService) GetDetailUserService(ctx *gin.Context) (result UserProfile
 		return result, err
 	}
 	return s.repository.GetDetailUserRepository(id)
+}
+
+func (s *userService) UpdateProfileService(ctx *gin.Context) (err error) {
+	var user UserUpdateProfile
+	err = ctx.ShouldBind(&user)
+	if err != nil {
+		return err
+	}
+
+	// get authorization of the owner
+	userId, err := middlewares.EncryptToken(ctx)
+	if err != nil {
+		return err
+	}
+	user.Id = userId
+
+	return s.repository.UpdateProfileRepository(user)
 }

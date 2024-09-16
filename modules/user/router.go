@@ -14,6 +14,7 @@ func Initiator(router *gin.Engine) {
 		api.POST("/register", RegisterRouter)
 		api.POST("/login", LoginRouter)
 		api.GET(":id", middlewares.VerifyToken(), GetDetailUserRouter)
+		api.POST("", middlewares.VerifyToken(), UpdateProfileRouter)
 	}
 }
 
@@ -59,4 +60,18 @@ func GetDetailUserRouter(ctx *gin.Context) {
 		return
 	}
 	common.GenerateSuccessResponseWithData(ctx, "successfully get user data", res)
+}
+
+func UpdateProfileRouter(ctx *gin.Context) {
+	var (
+		userRepo = NewRepository(connection.DBConnections)
+		userServ = NewService(userRepo)
+	)
+
+	err := userServ.UpdateProfileService(ctx)
+	if err != nil {
+		common.GenerateErrorResponse(ctx, err.Error())
+		return
+	}
+	common.GenerateSuccessResponse(ctx, "successfully update profile")
 }
